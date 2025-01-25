@@ -1,0 +1,40 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1.0
+    container_name: keycloak
+    command: start-dev --import-realm
+    ports:
+    - 8081:8081
+    expose:
+    - 8081
+    restart: always
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HTTP_PORT: 8081
+      KEYCLOAK_EXTRA_ARGS: '-Dkeycloak.import=/opt/keycloak/data/import/quarkus-realm.json'
+    volumes:
+    - ./quarkus-realm.json:/opt/keycloak/data/import/quarkus-realm.json
+  oidc-example:
+    image: quarkus-oidc-example:1.0.0-SNAPSHOT
+    container_name: oidc-example
+    depends_on:
+    - keycloak
+    ports:
+    - 8080:8080
+    - 9000:9000
+    expose:
+    - 8080
+    - 9000
+    environment:
+      QUARKUS_OTEL_SDK_DISABLED: 'true'
+      QUARKUS_OIDC_AUTH_SERVER_URL: http://keycloak:8081/realms/quarkus
+      QUARKUS_OIDC_CLIENT_ID: backend-service
+      QUARKUS_OIDC_CREDENTIALS_SECRET: secre
+      QUARKUS_OIDC_DISCOVERY_ENABLED: 'false'
+      QUARKUS_OIDC_AUTHORIZATION_PATH: /protocol/openid-connect/auth
+      QUARKUS_OIDC_TOKEN_PATH: /protocol/openid-connect/token
+      QUARKUS_OIDC_JWKS_PATH: /protocol/openid-connect/certs
+      QUARKUS_OIDC_USER_INFO_PATH: /protocol/openid-connect/userinfo
+      QUARKUS_OIDC_INTROSPECTION_PATH: /protocol/openid-connect/token/introspect
+      QUARKUS_OIDC_END_SESSION_PATH: /protocol/openid-connect/logout

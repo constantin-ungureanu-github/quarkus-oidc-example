@@ -8,6 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
+import io.micrometer.core.annotation.Counted;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
 
 @Path("/api")
@@ -23,6 +24,7 @@ public class JwtResource {
     private final JsonWebToken idToken;
 
     @WithSpan
+    @Counted
     @Path("/user")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -33,6 +35,7 @@ public class JwtResource {
     }
 
     @WithSpan
+    @Counted
     @Path("/admin")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
