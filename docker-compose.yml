@@ -16,7 +16,7 @@ services:
     volumes:
     - ./quarkus-realm.json:/opt/keycloak/data/import/quarkus-realm.json
   oidc-example:
-    image: quarkus-oidc-example:1.0.0-SNAPSHOT
+    image: test/quarkus-oidc-example:1.0.0-SNAPSHOT
     container_name: oidc-example
     depends_on:
     - keycloak
