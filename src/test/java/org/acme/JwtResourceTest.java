@@ -12,19 +12,19 @@ class JwtResourceTest {
 
     @Test
     void testAdminAccess() {
-        // Alice can access admin API
+        // Admin can access admin API
         given()
             .auth()
-                .oauth2(getAccessToken("alice"))
+                .oauth2(getAccessToken("admin"))
             .when()
                 .get("/api/admin")
             .then()
                 .statusCode(200);
 
-        // Bob cannot access admin API
+        // Alice cannot access admin API
         given()
             .auth()
-                .oauth2(getAccessToken("bob"))
+                .oauth2(getAccessToken("alice"))
             .when()
                 .get("/api/admin")
             .then()
@@ -33,19 +33,19 @@ class JwtResourceTest {
 
     @Test
     void testUserAccess() {
-        // Alice can access user API
+        // Admin can access user API
         given()
             .auth()
-                .oauth2(getAccessToken("alice"))
+                .oauth2(getAccessToken("admin"))
             .when()
                 .get("/api/user")
             .then()
                 .statusCode(200);
 
-        // Bob can access user API
+        // Alice can access user API
         given()
             .auth()
-                .oauth2(getAccessToken("bob"))
+                .oauth2(getAccessToken("alice"))
             .when()
                 .get("/api/user")
             .then()

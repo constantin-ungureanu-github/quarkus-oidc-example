@@ -11,6 +11,7 @@ mvn clean install -Pnative -Dquarkus.native.container-build=true -Dquarkus.conta
 ## Run
 
 ```shell
+cd deployment
 docker compose up
 ```
 
@@ -28,8 +29,9 @@ curl -H "Authorization: Bearer $access_token" -v GET http://localhost:8080/api/a
 curl -H "Authorization: Bearer $access_token" -v GET http://localhost:8080/api/user
 ```
 
-```shell
-http://localhost:9000/health
-http://localhost:9000/health/live
-http://localhost:9000/metrics
-```
+
+- [Swagger Live](http://localhost:8080/swagger-ui/)
+- [OpenAPI Schema](http://localhost:8080/openapi/)
+- [Metrics](http://localhost:9000/metrics/)
+- [Health](http://localhost:9000/health/)
+- [Health Liveness](http://localhost:9000/health/live/)

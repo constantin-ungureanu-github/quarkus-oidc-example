@@ -7,13 +7,13 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <compiler-plugin.version>3.13.0</compiler-plugin.version>
+        <compiler-plugin.version>3.14.0</compiler-plugin.version>
+		<surefire-plugin.version>3.5.2</surefire-plugin.version>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <quarkus.version>3.18.0</quarkus.version>
+        <quarkus.version>3.19.2</quarkus.version>
         <skipITs>true</skipITs>
-        <surefire-plugin.version>3.5.0</surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -31,11 +31,11 @@
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-container-image-docker</artifactId>
+            <artifactId>quarkus-arc</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-container-image-podman</artifactId>
+            <artifactId>quarkus-rest</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -47,6 +47,14 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
         <dependency>
@@ -55,19 +63,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-oidc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-micrometer</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-arc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -75,7 +71,20 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-container-image-docker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-container-image-podman</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -84,8 +93,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,6 +1,6 @@
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:26.1.0
+    image: quay.io/keycloak/keycloak:26.1
     container_name: keycloak
     command: start-dev --import-realm
     ports:
@@ -30,7 +30,7 @@ services:
       QUARKUS_OTEL_SDK_DISABLED: 'true'
       QUARKUS_OIDC_AUTH_SERVER_URL: http://keycloak:8081/realms/quarkus
       QUARKUS_OIDC_CLIENT_ID: backend-service
-      QUARKUS_OIDC_CREDENTIALS_SECRET: secre
+      QUARKUS_OIDC_CREDENTIALS_SECRET: secret
       QUARKUS_OIDC_DISCOVERY_ENABLED: 'false'
       QUARKUS_OIDC_AUTHORIZATION_PATH: /protocol/openid-connect/auth
       QUARKUS_OIDC_TOKEN_PATH: /protocol/openid-connect/token
